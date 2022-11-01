@@ -1,0 +1,32 @@
+<div>
+  <auth-form (submitted)="loginUser($event)">
+    <h1 class="mb-4 text-center text-3xl font-bold">Login</h1>
+
+    <p
+      *ngIf="message"
+      class="mb-4 p-4 border rounded-md"
+      [ngClass]="{
+        'border-[#badbcc] bg-[#d1e7dd] text-[#0f5132]':
+          message.type === 'success',
+        'border-[#f5c2c7] bg-[#f8d7da] text-[#842029]':
+          message.type === 'danger'
+      }"
+    >
+      {{ message.message }}
+    </p>
+
+    <a
+      routerLink="/sign-up"
+      class="block text-center text-sm text-[#5e7386] hover:underline"
+    >
+      Not registered?
+    </a>
+
+    <button
+      type="submit"
+      class="py-2 px-3 bg-cyan-500 hover:bg-cyan-600 text-white text-sm font-semibold rounded-md shadow focus:outline-none"
+    >
+      Login
+    </button>
+  </auth-form>
+</div>
