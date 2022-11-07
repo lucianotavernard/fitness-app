@@ -6,7 +6,7 @@
       class="absolute top-4 right-0 cursor-pointer"
       *ngIf="user?.authenticated"
     >
-      <span class="block w-6 h-6 opacity-40 hover:opacity-90">
+      <span class="block w-6 h-6 opacity-40 hover:opacity-90" (click)="logoutUser()">
         <img class="w-full" src="/assets/img/logout.svg" />
       </span>
     </div>

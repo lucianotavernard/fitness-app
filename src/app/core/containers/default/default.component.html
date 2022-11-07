@@ -1,5 +1,5 @@
 <main>
-  <app-header [user]="user$ | async"></app-header>
+  <app-header [user]="user$ | async" (logout)="onLogout()"></app-header>
   <app-navigation *ngIf="(user$ | async)?.authenticated"></app-navigation>
 
   <router-outlet></router-outlet>

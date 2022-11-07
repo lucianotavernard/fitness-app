@@ -11,7 +11,7 @@ const routes: Routes = [
       import('./modules/dash/dash.module').then((m) => m.DashModule),
   },
   {
-    path: '',
+    path: 'auth',
     component: DefaultLayoutComponent,
     loadChildren: () =>
       import('./modules/auth/auth.module').then((m) => m.AuthModule),

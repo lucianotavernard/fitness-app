@@ -15,6 +15,22 @@ export type User = {
   providedIn: 'root',
 })
 export class AuthService {
+  auth$ = this.af.authState.pipe(
+    map((response) => {
+      let user = undefined;
+
+      if (response) {
+        user = {
+          uid: response.uid,
+          email: response.email,
+          authenticated: true,
+        };
+      }
+
+      this.store.set('user', user);
+    })
+  );
+
   constructor(
     private readonly af: AngularFireAuth,
     private readonly store: Store
@@ -25,20 +41,10 @@ export class AuthService {
   }
 
   createSession(email: string, password: string) {
-    return from(this.af.signInWithEmailAndPassword(email, password)).pipe(
-      map((response) => {
-        let user = undefined;
+    return from(this.af.signInWithEmailAndPassword(email, password))
+  }
 
-        if (response.user) {
-          user = {
-            uid: response.user.uid,
-            email: response.user.email,
-            authenticated: true,
-          };
-        }
-
-        this.store.set('user', user);
-      })
-    );
+  removeSession() {
+    return from(this.af.signOut())
   }
 }
