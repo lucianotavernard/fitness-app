@@ -9,6 +9,7 @@ import { environment } from '../environments/environment';
 import { Store } from './store';
 
 import { CoreModule } from './core/core.module';
+import { SharedModule } from './shared/shared.module';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -23,16 +24,11 @@ import { AppComponent } from './app.component';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
 
-    CoreModule
+    CoreModule,
+    SharedModule,
   ],
-  declarations: [
-    AppComponent,
-  ],
-  providers: [
-    Store
-  ],
-  bootstrap: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
+  providers: [Store],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

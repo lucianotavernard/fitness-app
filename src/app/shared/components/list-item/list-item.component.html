@@ -1,0 +1,18 @@
+<div class="overflow-hidden transition-all ease-in-out flex border-b border-[#c1cedb] hover:bg-[#f9f9f9]">
+  <a class="flex flex-col grow h-full py-3 px-5 font-normal text-base text-[#545e6f]" [routerLink]="getRoute(item)">
+    <p class="grow">{{ item.name }}</p>
+    <p class="text-[#8ea6bd] text-xs italic">
+      <span>{{ item.ingredients }}</span>
+    </p>
+  </a>
+
+  <div class="transition-all z-10 flex items-center" [ngClass]="{'opacity-100 translate-x-0': toggled, 'opacity-0 translate-x-full': !toggled}">
+    <p class="mr-2 text-sm">Delete item?</p>
+    <button class="transition-all ease-in-out border-0 outline-0 ml-1 py-1 px-2 rounded-sm text-sm bg-[#d73a49] hover:bg-[#d73a49]/90 text-white" type="button" (click)="removeItem()">Yes</button>
+    <button class="border-0 outline-0 ml-1 py-1 px-2 text-sm bg-transparent" type="button" (click)="toggle()">No</button>
+  </div>
+
+  <button class="z-20 transition-all ease-in-out border-0 outline-0 ml-1 py-1 px-2 border-l border-[#c1cedb] bg-[#f6fafd] hover:bg-[#f6fafd]/90 text-sm" type="button" (click)="toggle()">
+    <img src="/assets/img/remove.svg" />
+  </button>
+</div>

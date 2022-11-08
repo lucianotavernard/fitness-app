@@ -1,14 +1,20 @@
 import { BehaviorSubject, distinctUntilChanged, map, Observable } from 'rxjs';
 
 import { User } from './modules/auth/services/auth.service';
+import { Meal } from './modules/health/meals/services/meals.service';
 
-export type State = {
-  user: User | undefined;
+type IState = {
   [key: string]: any;
+};
+
+export type State = IState & {
+  user: User | undefined;
+  meals: Meal[] | undefined;
 };
 
 const state: State = {
   user: undefined,
+  meals: undefined,
 };
 
 export class Store {

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { from, map } from 'rxjs';
+import { from, tap } from 'rxjs';
 
 import { Store } from 'src/app/store';
 
@@ -16,7 +16,7 @@ export type User = {
 })
 export class AuthService {
   auth$ = this.af.authState.pipe(
-    map((response) => {
+    tap((response) => {
       let user = undefined;
 
       if (response) {
@@ -36,15 +36,23 @@ export class AuthService {
     private readonly store: Store
   ) {}
 
+  get user() {
+    return this.af.user;
+  }
+
+  get authState() {
+    return this.af.authState;
+  }
+
   createUser(email: string, password: string) {
     return from(this.af.createUserWithEmailAndPassword(email, password));
   }
 
   createSession(email: string, password: string) {
-    return from(this.af.signInWithEmailAndPassword(email, password))
+    return from(this.af.signInWithEmailAndPassword(email, password));
   }
 
   removeSession() {
-    return from(this.af.signOut())
+    return from(this.af.signOut());
   }
 }
