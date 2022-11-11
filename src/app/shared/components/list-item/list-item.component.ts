@@ -32,7 +32,7 @@ export class ListItemComponent {
   }
 
   getRoute(item: any) {
-    const route = item.igredients ? '/meals' : '/workouts';
+    const route = item.ingredients ? '/meals' : '/workouts';
     return [route, item.key];
   }
 }
