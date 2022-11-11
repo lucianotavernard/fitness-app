@@ -14,23 +14,30 @@ type Message = {
   styleUrls: ['./sign-up.component.scss'],
 })
 export class SignUpComponent implements OnInit {
-  constructor(private readonly authService: AuthService) {}
-
+  loading: boolean = false;
   message!: Message;
+
+  constructor(private readonly authService: AuthService) {}
 
   ngOnInit(): void {}
 
   registerUser(event: FormGroup) {
     const { email, password } = event.value;
 
+    this.loading = true;
+
     return this.authService.createUser(email, password).subscribe({
       next: () => {
+        this.loading = false;
+
         this.message = {
           type: 'success',
           message: 'Usuário criado com sucesso!',
         };
       },
       error: (error) => {
+        this.loading = false;
+
         this.message = {
           type: 'danger',
           message: error.message,

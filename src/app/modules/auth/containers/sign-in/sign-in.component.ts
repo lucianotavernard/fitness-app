@@ -15,20 +15,25 @@ type Message = {
   styleUrls: ['./sign-in.component.scss'],
 })
 export class SignInComponent implements OnInit {
+  loading: boolean = false;
+  message!: Message;
+
   constructor(
     private readonly authService: AuthService,
     private readonly router: Router
   ) {}
-
-  message!: Message;
 
   ngOnInit(): void {}
 
   loginUser(event: FormGroup) {
     const { email, password } = event.value;
 
+    this.loading = true;
+
     return this.authService.createSession(email, password).subscribe({
       next: () => {
+        this.loading = false;
+
         this.message = {
           type: 'success',
           message: 'Usuário autenticado com sucesso!',
@@ -37,6 +42,8 @@ export class SignInComponent implements OnInit {
         this.router.navigate(['/']);
       },
       error: (error) => {
+        this.loading = false;
+
         this.message = {
           type: 'danger',
           message: error.message,

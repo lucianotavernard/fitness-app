@@ -26,7 +26,8 @@
       type="submit"
       class="py-2 px-3 bg-[#39a1e7] hover:bg-[#39a1e7]/90 text-white text-sm font-semibold rounded-md shadow focus:outline-none"
     >
-      Create account
+      <img *ngIf="loading" class="mr-2" src="/assets/img/loading-white.svg" />
+      {{ loading ? "Creating account" : "Create account" }}
     </button>
   </auth-form>
 </div>
