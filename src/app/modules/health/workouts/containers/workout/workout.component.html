@@ -1,0 +1,31 @@
+<div
+  class="overflow-hidden my-12 border border-[#c1cedb] rounded-sm bg-white shadow"
+>
+  <div class="flex items-center p-8 border-b border-[#c1cedb] bg-[#f6fafd]">
+    <h1 class="grow flex items-center m-0 p-0 text-2xl">
+      <img class="w-6 h-6 mr-2" src="/assets/img/workout.svg" />
+      <span *ngIf="workout$ | async as workout; else title">
+        {{ workout.name ? "Edit" : "Create" }} workout
+      </span>
+      <ng-template #title>Loading...</ng-template>
+    </h1>
+  </div>
+
+  <div *ngIf="workout$ | async as workout; else loading">
+    <workout-form
+      [workout]="workout"
+      (create)="addWorkout($event)"
+      (update)="updateWorkout($event)"
+      (remove)="removeWorkout($event)"
+    ></workout-form>
+  </div>
+
+  <ng-template #loading>
+    <div
+      class="flex justify-center items-center w-full p-8 text-xl font-medium"
+    >
+      <img class="mr-2" src="/assets/img/loading.svg" />
+      Fetching workout...
+    </div>
+  </ng-template>
+</div>

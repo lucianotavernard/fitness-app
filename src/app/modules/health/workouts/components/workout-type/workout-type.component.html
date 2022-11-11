@@ -1,0 +1,21 @@
+<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+  <div
+    *ngFor="let selector of selectors"
+    class="transition ease-in-out flex justify-center items-center p-4 border border-[#d1deeb] rounded bg-[#f5f9fd] hover:bg-[#f5f9fd]/90 cursor-pointer"
+    [ngClass]="{ 'bg-[#f5f9fd] hover:bg-[#f5f9fd]/90': selector === value }"
+    [class.active]=""
+    (click)="setSelected(selector)"
+  >
+    <img
+      class="opacity-60 w-9 mr-9"
+      [ngClass]="{ 'opacity-100': selector === value }"
+      src="/assets/img/{{ selector }}.svg"
+    />
+    <p
+      class="opacity-60 m-0 uppercase text-base font-medium text tracking-widest"
+      [ngClass]="{ 'opacity-100': selector === value }"
+    >
+      {{ selector }}
+    </p>
+  </div>
+</div>
