@@ -1,1 +1,18 @@
-<p>schedule works!</p>
+<div class="my-12">
+  <schedule-calendar
+    [date]="date$ | async"
+    [items]="schedule$ | async"
+    (change)="changeDate($event)"
+    (select)="changeSection($event)"
+  >
+  </schedule-calendar>
+
+  <schedule-assign
+    *ngIf="open"
+    [list]="list$ | async"
+    [section]="selected$ | async"
+    (update)="assignItem($event)"
+    (cancel)="closeAssign()"
+  >
+  </schedule-assign>
+</div>

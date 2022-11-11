@@ -1,0 +1,49 @@
+<div>
+  <div
+    class="py-2 bg-[#39a1e7] text-white uppercase text-center text-sm font-semibold"
+  >
+    {{ name }}
+  </div>
+
+  <div>
+    <div
+      *ngIf="section.meals; else addMeal"
+      class="flex p-2 text-[#545e6f] italic text-base font-normal cursor-pointer hover:bg-[#f9f9f9]"
+      (click)="onSelect('meals', section.meals)"
+    >
+      <img class="w-6 h-6 mr-2" src="assets/img/food.svg" alt="Meals" />
+      <span>{{ section.meals | join }}</span>
+    </div>
+
+    <ng-template #addMeal>
+      <div
+        class="flex p-2 text-[#545e6f] italic text-base font-normal cursor-pointer hover:bg-[#f9f9f9]"
+        (click)="onSelect('meals')"
+      >
+        <img class="mr-2" src="assets/img/plus.svg" alt="Assign meal" /> Assign
+        meal
+      </div>
+    </ng-template>
+
+    <hr class="h-[1px] bg-[#c1cedb]" />
+
+    <div
+      *ngIf="section.workouts; else addWorkout"
+      class="flex p-2 text-[#545e6f] italic text-base font-normal cursor-pointer hover:bg-[#f9f9f9]"
+      (click)="onSelect('workouts', section.workouts)"
+    >
+      <img class="w-6 h-6 mr-2" src="assets/img/workout.svg" alt="Workouts" />
+      <span>{{ section.workouts | join }}</span>
+    </div>
+
+    <ng-template #addWorkout>
+      <div
+        class="flex p-2 text-[#545e6f] italic text-base font-normal cursor-pointer hover:bg-[#f9f9f9]"
+        (click)="onSelect('workouts')"
+      >
+        <img class="mr-2" src="assets/img/plus.svg" alt="Assign workout" />
+        Assign workout
+      </div>
+    </ng-template>
+  </div>
+</div>

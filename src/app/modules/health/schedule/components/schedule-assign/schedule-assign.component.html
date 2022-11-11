@@ -1,0 +1,67 @@
+<div
+  class="absolute top-0 bottom-0 left-0 flex justify-center items-center w-full h-full bg-black/20"
+>
+  <div
+    class="overflow-hidden max-w-lg border border-[#97a8b9] rounded-sm bg-white shadow"
+  >
+    <div class="flex items-center p-8 border-b border-[#c1cedb] bg-[#f6fafd]">
+      <h1 class="flex items-center grow mr-9 p-0 text-lg">
+        <img
+          class="w-6 h-6 mr-2"
+          src="assets/img/{{
+            section.type === 'workouts' ? 'workout' : 'food'
+          }}.svg"
+        />
+        Assign {{ section.type }}
+      </h1>
+
+      <a
+        class="flex items-center py-1 px-4 rounded-[3rem] bg-[#97c747] hover:bg-[#97c747]/90 text-white uppercase text-xs font-semibold"
+        [routerLink]="getRoute(section.type)"
+      >
+        <img src="assets/img/add-white.svg" />
+        New {{ section.type }}
+      </a>
+    </div>
+
+    <div class="overflow-y-scroll h-36 m-8 border border-[#c1cedb] rounded-sm">
+      <span
+      *ngIf="!list?.length"
+        class="flex justify-center items-center py-2 px-8"
+      >
+        <img class="mr-2" src="assets/img/face.svg" />
+        Nothing here to assign
+      </span>
+
+      <div
+        *ngFor="let item of list"
+        class="transition-all ease-in-out flex py-2 px-2 [&:not(:last-of-type)]:border-b border-[#d1deeb] cursor-pointer"
+        (click)="toggleItem(item.name)"
+      >
+        <img *ngIf="!exists(item.name)" class="mr-2" src="assets/img/check.svg" />
+        <img *ngIf="exists(item.name)" class="mr-2" src="assets/img/check-active.svg" />
+        {{ item.name }}
+      </div>
+    </div>
+
+    <div class="flex justify-between p-8 pt-0">
+      <div>
+        <button
+          type="button"
+          class="transition-all ease-in-out py-2 px-4 border-0 rounded-sm outline-0 bg-[#39a1e7] hover:bg-[#39a1e7]/90 text-white text-base font-semibold cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+          (click)="updateAssign()"
+        >
+          Update
+        </button>
+
+        <button
+          type="button"
+          class="transition-all ease-in-out py-2 px-4 border-0 rounded-sm outline-0 bg-[#fff] text-[#545e6f] hover:text-[#545e6f]/90 text-base font-semibold cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+          (click)="cancelAssign()"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
