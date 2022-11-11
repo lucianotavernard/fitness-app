@@ -8,7 +8,7 @@
   </schedule-calendar>
 
   <schedule-assign
-    *ngIf="open"
+    [open]="open"
     [list]="list$ | async"
     [section]="selected$ | async"
     (update)="assignItem($event)"

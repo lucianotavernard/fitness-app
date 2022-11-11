@@ -5,10 +5,14 @@ import {
   Output,
   EventEmitter,
   ChangeDetectionStrategy,
+  OnChanges,
+  SimpleChanges,
 } from '@angular/core';
 
-import { Meal } from '../../../meals/services/meals.service';
-import { Workout } from '../../../workouts/services/workouts.service';
+type Section = {
+  type: string;
+  assigned: string;
+};
 
 @Component({
   selector: 'schedule-assign',
@@ -16,14 +20,17 @@ import { Workout } from '../../../workouts/services/workouts.service';
   templateUrl: './schedule-assign.component.html',
   styleUrls: ['schedule-assign.component.scss'],
 })
-export class ScheduleAssignComponent implements OnInit {
+export class ScheduleAssignComponent implements OnInit, OnChanges {
   private selected: string[] = [];
 
   @Input()
-  section: any;
+  open!: boolean;
 
   @Input()
   list!: any;
+
+  @Input()
+  section!: Section;
 
   @Output()
   update = new EventEmitter<any>();
@@ -31,8 +38,14 @@ export class ScheduleAssignComponent implements OnInit {
   @Output()
   cancel = new EventEmitter<any>();
 
-  ngOnInit() {
-    this.selected = [...this.section.assigned];
+  constructor() {}
+
+  ngOnInit() {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.open && this.section) {
+      this.selected = [...this.section.assigned]
+    }
   }
 
   toggleItem(name: string) {

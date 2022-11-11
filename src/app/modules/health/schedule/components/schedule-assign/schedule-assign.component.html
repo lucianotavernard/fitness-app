@@ -1,10 +1,15 @@
 <div
-  class="absolute top-0 bottom-0 left-0 flex justify-center items-center w-full h-full bg-black/20"
+  class="transition-all duration-300 ease-in-out absolute top-0 left-0 flex justify-center items-center w-full h-full bg-black/20"
+  [ngClass]="{ 'visible opacity-100': open, 'invisible opacity-0': !open }"
 >
   <div
-    class="overflow-hidden max-w-lg border border-[#97a8b9] rounded-sm bg-white shadow"
+    class="transition-all duration-300 ease-in-out overflow-hidden max-w-lg border border-[#97a8b9] rounded-sm bg-white shadow"
+    [ngClass]="{
+      'opacity-100 translate-y-0': open,
+      'opacity-0 -translate-y-28': !open
+    }"
   >
-    <div class="flex items-center p-8 border-b border-[#c1cedb] bg-[#f6fafd]">
+    <div *ngIf="section" class="flex items-center p-8 border-b border-[#c1cedb] bg-[#f6fafd]">
       <h1 class="flex items-center grow mr-9 p-0 text-lg">
         <img
           class="w-6 h-6 mr-2"
@@ -26,7 +31,7 @@
 
     <div class="overflow-y-scroll h-36 m-8 border border-[#c1cedb] rounded-sm">
       <span
-      *ngIf="!list?.length"
+        *ngIf="!list?.length"
         class="flex justify-center items-center py-2 px-8"
       >
         <img class="mr-2" src="assets/img/face.svg" />
@@ -38,8 +43,16 @@
         class="transition-all ease-in-out flex py-2 px-2 [&:not(:last-of-type)]:border-b border-[#d1deeb] cursor-pointer"
         (click)="toggleItem(item.name)"
       >
-        <img *ngIf="!exists(item.name)" class="mr-2" src="assets/img/check.svg" />
-        <img *ngIf="exists(item.name)" class="mr-2" src="assets/img/check-active.svg" />
+        <img
+          *ngIf="!exists(item.name)"
+          class="mr-2"
+          src="assets/img/check.svg"
+        />
+        <img
+          *ngIf="exists(item.name)"
+          class="mr-2"
+          src="assets/img/check-active.svg"
+        />
         {{ item.name }}
       </div>
     </div>
