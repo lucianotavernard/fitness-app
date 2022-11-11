@@ -4,9 +4,12 @@ import { RouterModule } from '@angular/router';
 
 import { ListItemComponent } from './components/list-item/list-item.component';
 
+import { JoinPipe } from './pipes/join.pipe';
+import { WorkoutPipe } from './pipes/workout.pipe';
+
 @NgModule({
   imports: [CommonModule, RouterModule],
   exports: [ListItemComponent],
-  declarations: [ListItemComponent],
+  declarations: [ListItemComponent, JoinPipe, WorkoutPipe],
 })
 export class SharedModule {}
