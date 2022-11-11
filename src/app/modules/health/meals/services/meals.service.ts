@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { AngularFireDatabase } from '@angular/fire/compat/database';
-import { filter, map, of, switchMap, tap } from 'rxjs';
+import { filter, map, switchMap, tap } from 'rxjs';
 
 import { AuthService } from 'src/app/modules/auth/services/auth.service';
 import { Store } from 'src/app/store';
@@ -45,7 +45,8 @@ export class MealsService {
   getMeal(key: string) {
     return this.store.select<Meal[]>('meals').pipe(
       filter(Boolean),
-      map((meals) => meals.find((meal) => meal.key === key))
+      map((meals) => meals.find((meal) => meal.key === key)),
+      map((meal) => meal || ({} as Meal))
     );
   }
 

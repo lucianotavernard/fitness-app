@@ -84,33 +84,18 @@ export class MealFormComponent implements OnChanges {
 
   createMeal() {
     if (this.form.valid) {
-      const { name, ingredients = [] } = this.form.value;
-
-      this.create.emit({
-        name: name || '',
-        ingredients: ingredients.map(String),
-      });
+      this.create.emit(this.form.value as Meal);
     }
   }
 
   updateMeal() {
     if (this.form.valid) {
-      const { name, ingredients = [] } = this.form.value;
-
-      this.update.emit({
-        name: name || '',
-        ingredients: ingredients.map(String),
-      });
+      this.update.emit(this.form.value as Meal);
     }
   }
 
   removeMeal() {
-    const { name, ingredients = [] } = this.form.value;
-
-    this.remove.emit({
-      name: name || '',
-      ingredients: ingredients.map(String),
-    });
+    this.remove.emit(this.form.value as Meal);
   }
 
   toggle() {
