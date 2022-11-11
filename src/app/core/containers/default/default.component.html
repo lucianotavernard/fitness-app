@@ -2,7 +2,7 @@
   <app-header [user]="user$ | async" (logout)="onLogout()"></app-header>
   <app-navigation *ngIf="(user$ | async)?.authenticated"></app-navigation>
 
-  <section class="w-full max-w-3xl my-0 mx-auto">
+  <section class="w-full max-w-3xl my-0 mx-auto px-2 sm:px-4 md:px-8">
     <router-outlet></router-outlet>
   </section>
 </main>
