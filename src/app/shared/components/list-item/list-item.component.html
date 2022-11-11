@@ -2,7 +2,8 @@
   <a class="flex flex-col grow h-full py-3 px-5 font-normal text-base text-[#545e6f]" [routerLink]="getRoute(item)">
     <p class="grow">{{ item.name }}</p>
     <p class="text-[#8ea6bd] text-xs italic">
-      <span>{{ item.ingredients }}</span>
+      <span *ngIf="item.ingredients">{{ item.ingredients | join }}</span>
+      <span *ngIf="!item.ingredients">{{ item | workout }}</span>
     </p>
   </a>
 
